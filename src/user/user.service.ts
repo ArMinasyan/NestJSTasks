@@ -69,14 +69,13 @@ export class UserService {
 
   public async update(id: number, payload: userDto): Promise<{ data: userEntity[]; message: string }> {
     try {
-      const isExist = await this.userRepo.query(`
-          SELECT *
-          FROM users
-          WHERE username = $1
-            AND "deletedAt" IS NULL
-      `, [payload.username]);
+      const isExist = await this.userRepo.findOne({
+        where: {
+          username: payload.username
+        }
+      });
 
-      if (isExist && isExist.length > 0) {
+      if (isExist && isExist.id) {
         return {
           message: "Username already exist",
           data: []
