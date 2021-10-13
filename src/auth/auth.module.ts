@@ -18,7 +18,10 @@ import { AuthDiToken } from "./auth.di";
   providers: [{
     provide: AuthDiToken.AUTH_SERVICE,
     useClass: AuthService
-  }]
+  }],
+  exports:[
+    JwtModule
+  ]
 })
 export class AuthModule {
 }
