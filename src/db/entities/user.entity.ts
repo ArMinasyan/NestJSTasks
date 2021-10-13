@@ -26,6 +26,12 @@ export class userEntity {
   @Column()
   password: string;
 
+  @Column({
+    default: false,
+    nullable: false
+  })
+  isAdmin: boolean;
+
   @CreateDateColumn()
   createdAt?: Date;
 
